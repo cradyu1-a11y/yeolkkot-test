@@ -188,8 +188,8 @@ function result(fresh){
       <p class="lead small">두 번째로 가까운 사람은 ${CH[sec.id].name}(${sec.pct}%)예요.</p>
     </div>
     <div class="sec"><h2>내 성격 여섯 축</h2>
-      <p class="lead small">점이 가운데보다 오른쪽이면 내 결과에서 그 축이 높은 편, 왼쪽이면 낮은 편이에요. 다른 사람과 비교한 값은 아니에요. 높고 낮은 데 좋고 나쁨은 없어요.</p>
-      ${AX.map(a=>{const L=lvl(u[a.k]); return `<div class="block axcard"><div class="axis"><div class="lab"><span>${a.lo}</span><strong>${a.name} · ${LV[L]}</strong><span>${a.hi}</span></div><div class="scale"><i style="left:${(u[a.k]+1)*50}%"></i></div></div><p>${esc(AXE[a.k][L])}</p></div>`;}).join('')}
+      <div class="block axall">${AX.map(a=>{const L=lvl(u[a.k]); return `<div class="axrow"><div class="axhead"><strong>${a.name}</strong><em>${LV[L]}</em></div><div class="scale"><i style="left:${(u[a.k]+1)*50}%"></i></div><div class="axends"><span>${a.lo}</span><span>${a.hi}</span></div></div>`;}).join('')}</div>
+
     </div>
     <div class="sec"><h2>친구한테 보내기</h2>
       <img class="card" id="card" alt="결과 카드">
@@ -202,6 +202,7 @@ function result(fresh){
       <a class="btn" href="${CH_URL}" target="_blank" rel="noopener">유튜브 열꽃심리학 보러 가기</a>
     </div>
     </div>
+    <details class="block axnote"><summary>내 성격 여섯 축 풀이</summary><ul>${AX.map(a=>{const L=lvl(u[a.k]); return `<li><b>${a.name} · ${LV[L]}</b> ${esc(AXE[a.k][L])}</li>`;}).join('')}</ul><p class="small">점이 가운데보다 오른쪽이면 내 결과에서 그 축이 높은 편, 왼쪽이면 낮은 편이에요. 다른 사람과 비교한 값은 아니에요. 높고 낮은 데 좋고 나쁨은 없어요.</p></details>
     <p class="note">짧은 재미용 검사라 다시 하면 바뀔 수 있어요.</p>
     `;
   document.getElementById('again').onclick=()=>{ ans=new Array(Q.length).fill(null); store.del('ans'); intro(); window.scrollTo({top:0}); };
