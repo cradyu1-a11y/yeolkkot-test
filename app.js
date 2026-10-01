@@ -188,7 +188,7 @@ function result(fresh){
       <p class="lead small">두 번째로 가까운 사람은 ${CH[sec.id].name}(${sec.pct}%)예요.</p>
     </div>
     <div class="sec"><h2>내 성격 여섯 축</h2>
-      <div class="block axall">${AX.map(a=>{const L=lvl(u[a.k]); return `<div class="axrow"><div class="axhead"><strong>${a.name}</strong><em>${LV[L]}</em></div><div class="scale"><i style="left:${(u[a.k]+1)*50}%"></i></div><div class="axends"><span>${a.lo}</span><span>${a.hi}</span></div></div>`;}).join('')}</div>
+      <div class="block axall">${AX.map(a=>{const L=lvl(u[a.k]); return `<div class="axrow" style="--ax:var(--ax-${a.k})"><div class="axhead"><strong>${a.name}</strong><em>${LV[L]}</em></div><div class="scale"><i style="left:${(u[a.k]+1)*50}%"></i></div><div class="axends"><span>${a.lo}</span><span>${a.hi}</span></div></div>`;}).join('')}</div>
 
     </div>
     <div class="sec"><h2>친구한테 보내기</h2>
@@ -234,6 +234,7 @@ function result(fresh){
 }
 
 /* ---------- 결과 카드 (1080×1350) ---------- */
+const AXC={H:'#2E7D57',E:'#A3433B',X:'#1F7391',A:'#5A5470',C:'#7A5A34',O:'#93408E'};
 function drawCard(top,c,u){
   const W=1080,H=1350, cv=document.createElement('canvas'); cv.width=W; cv.height=H; const g=cv.getContext('2d');
   const rr=(x,y,w,h,r)=>{ g.beginPath(); if(g.roundRect) g.roundRect(x,y,w,h,r); else g.rect(x,y,w,h); };
@@ -249,7 +250,7 @@ function drawCard(top,c,u){
     AX.forEach((a,i)=>{ const y=965+i*56, x0=280, x1=W-120;
       g.textAlign='right'; g.fillStyle='#4A443D'; g.font='500 29px "Noto Sans KR", sans-serif'; g.fillText(a.name, x0-26, y+10);
       g.fillStyle='#EBE3D7'; rr(x0,y-6,x1-x0,12,6); g.fill();
-      g.fillStyle=c.c; g.beginPath(); g.arc(x0+(u[a.k]+1)/2*(x1-x0), y, 15, 0, 7); g.fill();
+      g.fillStyle=AXC[a.k]; g.beginPath(); g.arc(x0+(u[a.k]+1)/2*(x1-x0), y, 15, 0, 7); g.fill();
     });
     g.textAlign='center'; g.fillStyle='#8A8278'; g.font='500 27px "Noto Sans KR", sans-serif';
     g.fillText('유튜브 열꽃심리학 @yeolkkot_psy', W/2, H-44);
