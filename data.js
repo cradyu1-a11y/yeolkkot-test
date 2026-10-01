@@ -5,7 +5,7 @@
  */
 window.YK = {
   // 결과 집계용 구글 앱스 스크립트 주소. 비워 두면 집계 없이 동작한다.
-  API_URL: "",
+  API_URL: "https://script.google.com/macros/s/AKfycbxgpyUj4izhy8Mk__203haoVht8tUTZmdQDlfl1VkGeBhft8FBRqRSh6yQHlSerqZuoKg/exec",
   CH_URL: "https://www.youtube.com/@yeolkkot_psy",
   JOIN_URL: "https://www.youtube.com/@yeolkkot_psy/join",
   VERSION: "v1",
